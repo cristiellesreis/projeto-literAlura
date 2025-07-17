@@ -1,10 +1,14 @@
 package br.com.alura.literalura.principal;
 
+import br.com.alura.literalura.dto.RespostaDTO;
+import br.com.alura.literalura.servico.LivroService;
+
 import java.util.Scanner;
 
 public class Principal {
 
     private Scanner leitura = new Scanner(System.in);
+    private LivroService livroServico = new LivroService();
 
     public void exibeMenu() {
 
@@ -55,6 +59,8 @@ public class Principal {
     }
 
     private void listarLivrosPorIdioma() {
+
+
     }
 
     private void listarAutoresVivosPorAno() {
@@ -70,7 +76,8 @@ public class Principal {
     }
 
     private void buscarLivroPeloTitulo() {
-
+        RespostaDTO teste =  livroServico.buscarLivro("emma");
+        System.out.println(teste);
     }
 
 }
