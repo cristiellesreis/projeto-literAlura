@@ -16,7 +16,7 @@ public class Principal {
 
         while (opcao != 9) {
             var menu = """
-                    *** Literalura ***
+                    \n***** Literalura *****
                     
                     Escolha o número de sua opção:                    
                     
@@ -76,8 +76,18 @@ public class Principal {
     }
 
     private void buscarLivroPeloTitulo() {
-        RespostaDTO teste =  livroServico.buscarLivro("emma");
-        System.out.println(teste);
+        System.out.println("Qual o nome do livro que deseja buscar? ");
+        var nome = leitura.nextLine();
+
+        RespostaDTO resposta = livroServico.buscarLivro(nome);
+
+        if (resposta.livros().isEmpty()) {
+            System.out.println("Nenhum livro encontrado.");
+        } else {
+            resposta.livros().stream()
+                    .findFirst()
+                    .ifPresent(System.out::println);
+        }
     }
 
 }

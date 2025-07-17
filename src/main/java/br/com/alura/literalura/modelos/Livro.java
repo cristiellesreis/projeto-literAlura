@@ -26,9 +26,7 @@ public class Livro {
     @CollectionTable(name = "livro_idiomas", joinColumns = @JoinColumn(name = "livro_id"))
     private List<String> idiomas;
 
-    private String copyright;
     private Integer downloadCount;
-    private String mediaType;
 
     public Long getId() {
         return id;
@@ -62,14 +60,6 @@ public class Livro {
         this.idiomas = idiomas;
     }
 
-    public String getCopyright() {
-        return copyright;
-    }
-
-    public void setCopyright(String copyright) {
-        this.copyright = copyright;
-    }
-
     public Integer getDownloadCount() {
         return downloadCount;
     }
@@ -78,26 +68,17 @@ public class Livro {
         this.downloadCount = downloadCount;
     }
 
-    public String getMediaType() {
-        return mediaType;
-    }
 
-    public void setMediaType(String mediaType) {
-        this.mediaType = mediaType;
-    }
-
-    @Override
-    public String toString() {
-        String nomesAutores = autores.stream()
-                .map(Autor::getNome)
-                .reduce((a, b) -> a + ", " + b)
-                .orElse("Desconhecido");
-
-        return "Livro: " + titulo +
-                ", Autor: " + nomesAutores +
-                ", Idioma: " + idiomas +
-                ", Copyright: " + copyright +
-                ", Downloads: " + downloadCount +
-                ", Tipo: " + mediaType;
-    }
+//    @Override
+//    public String toString() {
+//        String nomesAutores = autores.stream()
+//                .map(Autor::getNome)
+//                .reduce((a, b) -> a + ", " + b)
+//                .orElse("Desconhecido");
+//
+//        return "Livro: " + titulo +
+//                ", Autor: " + nomesAutores +
+//                ", Idioma: " + idiomas +
+//                ", Downloads: " + downloadCount;
+//    }
 }
