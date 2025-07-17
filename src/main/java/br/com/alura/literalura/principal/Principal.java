@@ -1,7 +1,12 @@
 package br.com.alura.literalura.principal;
 
 import br.com.alura.literalura.dto.RespostaDTO;
+import br.com.alura.literalura.modelos.Livro;
+import br.com.alura.literalura.repositorio.LivroRepository;
+import br.com.alura.literalura.servico.ConverteDados;
 import br.com.alura.literalura.servico.LivroService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
@@ -9,6 +14,11 @@ public class Principal {
 
     private Scanner leitura = new Scanner(System.in);
     private LivroService livroServico = new LivroService();
+    private LivroRepository repositorio;
+
+    public Principal(LivroRepository repositorio) {
+        this.repositorio = repositorio;
+    }
 
     public void exibeMenu() {
 
@@ -76,18 +86,29 @@ public class Principal {
     }
 
     private void buscarLivroPeloTitulo() {
-        System.out.println("Qual o nome do livro que deseja buscar? ");
-        var nome = leitura.nextLine();
+        var cadastrarNovo = "S";
 
-        RespostaDTO resposta = livroServico.buscarLivro(nome);
+        while (cadastrarNovo.equalsIgnoreCase("S")) {
+            System.out.println("Qual o nome do livro que deseja buscar? ");
+            var nome = leitura.nextLine();
 
-        if (resposta.livros().isEmpty()) {
-            System.out.println("Nenhum livro encontrado.");
-        } else {
-            resposta.livros().stream()
-                    .findFirst()
-                    .ifPresent(System.out::println);
+            RespostaDTO resposta = livroServico.buscarLivro(nome);
+
+            if (resposta.livros().isEmpty()) {
+                System.out.println("Nenhum livro encontrado.");
+            } else {
+                resposta.livros().stream()
+                        .findFirst()
+                        .ifPresent(livroDTO -> {
+                            System.out.println(livroDTO);
+
+                            Livro livro = ConverteDados.converterParaEntidade(livroDTO);
+                            repositorio.save(livro);
+                        });
+            }
+
+            System.out.println("Quer buscar outro livro? (S/N)");
+            cadastrarNovo = leitura.nextLine();
         }
     }
-
 }

@@ -28,6 +28,10 @@ public class Livro {
 
     private Integer downloadCount;
 
+    public Livro(String titulo, List<Autor> autores, List<String> idiomas, Integer integer
+    ) {
+    }
+
     public Long getId() {
         return id;
     }
@@ -68,17 +72,4 @@ public class Livro {
         this.downloadCount = downloadCount;
     }
 
-
-//    @Override
-//    public String toString() {
-//        String nomesAutores = autores.stream()
-//                .map(Autor::getNome)
-//                .reduce((a, b) -> a + ", " + b)
-//                .orElse("Desconhecido");
-//
-//        return "Livro: " + titulo +
-//                ", Autor: " + nomesAutores +
-//                ", Idioma: " + idiomas +
-//                ", Downloads: " + downloadCount;
-//    }
 }

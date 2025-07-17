@@ -18,6 +18,10 @@ public class Autor {
     @ManyToMany(mappedBy = "autores")
     private List<Livro> livros;
 
+    public Autor(String nome) {
+
+    }
+
     public Long getId() {
         return id;
     }
