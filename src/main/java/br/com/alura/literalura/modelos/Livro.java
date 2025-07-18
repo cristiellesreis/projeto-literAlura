@@ -14,7 +14,7 @@ public class Livro {
 
     private String titulo;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "livro_autor",
             joinColumns = @JoinColumn(name = "livro_id"),
@@ -28,8 +28,14 @@ public class Livro {
 
     private Integer downloadCount;
 
-    public Livro(String titulo, List<Autor> autores, List<String> idiomas, Integer integer
-    ) {
+    public Livro(String titulo, List<Autor> autores, List<String> idiomas, Integer downloadCount) {
+        this.titulo = titulo;
+        this.autores = autores;
+        this.idiomas = idiomas;
+        this.downloadCount = downloadCount;
+    }
+
+    public Livro() {
     }
 
     public Long getId() {

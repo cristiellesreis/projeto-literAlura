@@ -18,8 +18,13 @@ public class Autor {
     @ManyToMany(mappedBy = "autores")
     private List<Livro> livros;
 
-    public Autor(String nome) {
+    public Autor(){
+    }
 
+    public Autor(String nome, Integer anoNascimento, Integer anoFalecimento) {
+        this.nome = nome;
+        this.anoNascimento = anoNascimento;
+        this.anoFalecimento = anoFalecimento;
     }
 
     public Long getId() {
