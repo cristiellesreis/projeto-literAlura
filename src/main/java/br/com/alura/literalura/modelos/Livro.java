@@ -14,7 +14,7 @@ public class Livro {
 
     private String titulo;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "livro_autor",
             joinColumns = @JoinColumn(name = "livro_id"),
@@ -22,7 +22,7 @@ public class Livro {
     )
     private List<Autor> autores;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "livro_idiomas", joinColumns = @JoinColumn(name = "livro_id"))
     private List<String> idiomas;
 
@@ -76,6 +76,19 @@ public class Livro {
 
     public void setDownloadCount(Integer downloadCount) {
         this.downloadCount = downloadCount;
+    }
+
+    @Override
+    public String toString() {
+        String nomesAutores = autores.stream()
+                .map(Autor::getNome)
+                .reduce((a, b) -> a + ", " + b)
+                .orElse("Desconhecido");
+
+        return "\nLivro: " + titulo + "\n" +
+                "Autor: " + nomesAutores + "\n" +
+                "Idioma: " + idiomas + "\n" +
+                "Downloads: " + downloadCount + "\n";
     }
 
 }

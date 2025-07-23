@@ -15,10 +15,10 @@ public class Autor {
     private Integer anoNascimento;
     private Integer anoFalecimento;
 
-    @ManyToMany(mappedBy = "autores")
+    @ManyToMany(mappedBy = "autores", fetch = FetchType.EAGER)
     private List<Livro> livros;
 
-    public Autor(){
+    public Autor() {
     }
 
     public Autor(String nome, Integer anoNascimento, Integer anoFalecimento) {
@@ -69,9 +69,8 @@ public class Autor {
 
     @Override
     public String toString() {
-        return "Nome do Autor: '" + nome + '\'' +
-                ", Ano de Nascimento: " + anoNascimento +
-                ", Ano de Falecimento: " + anoFalecimento +
-                ", Livros: " + livros;
+        return "\nNome do Autor: " + nome + "\n" +
+                "Ano de Nascimento: " + anoNascimento + "\n" +
+                "Ano de Falecimento: " + anoFalecimento + "\n";
     }
 }
