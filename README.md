@@ -78,14 +78,6 @@ src/
  │   └─ resources/          → Configurações (application.properties)
 
 ```
-🛠️ Personalizações possíveis
-
-- Manualmente ajustar o idioma suportado
-- Mudar o banco de dados (MySQL, H2, etc.)
-- API key extra
-- Adicionar paginação na listagem de livros
-- Implementar endpoints REST além do terminal interativo
-
 ## 📚 Créditos
 
 Este projeto foi proposto como desafio pelo programa:
