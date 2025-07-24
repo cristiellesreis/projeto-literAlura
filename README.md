@@ -38,10 +38,11 @@ cd projeto-literAlura
 No arquivo `src/main/resources/application.properties`, ajuste para usar PostgreSQL:
 
 ```properties
-spring.datasource.url=jdbc:postgresql://localhost:5432/literalura
-spring.datasource.username=seu_usuario
-spring.datasource.password=sua_senha
+spring.datasource.url=jdbc:postgresql://${DB_HOST}/literalura_db
+spring.datasource.username=${DB_USERNAME}
+spring.datasource.password=${DB_PASSWORD}
 spring.jpa.hibernate.ddl-auto=update
+
 ```
 🚀 Executando
 ```bash
